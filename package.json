@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "nodemon": "nodemon ./bin/www",
     "dev": "yarn start"
   },
   "dependencies": {
     "arraybuffer-to-string": "^1.0.2",
+    "axios": "^0.21.4",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
