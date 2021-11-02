@@ -4,9 +4,6 @@ phases:
   install:
     runtime-versions:
       nodejs: 14 
-    commands:
-      - echo Installing Mocha...
-      - npm install -g mocha
   pre_build:
     commands:
       - echo Installing source NPM dependencies...
@@ -23,3 +20,4 @@ phases:
 # ExpressJS apps will need other artifact directories included (bin/*, public/*, routes/*, views/* etc).
 artifacts:
   files:
+    - '**/*'
