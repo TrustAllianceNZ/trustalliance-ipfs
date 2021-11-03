@@ -1,6 +1,6 @@
 {
-    "executionRoleArn": "<AWS_EXE_ROLE_ARN>",
-    "taskRoleArn": "<AWS_TASK_ROLE_ARN>",
+    "executionRoleArn": "arn:aws:iam::533545012068:role/trackback-ipfs-task-execution-role",
+    "taskRoleArn": "arn:aws:iam::533545012068:role/trackback-ipfs-task-role",
     "memory": "512",
     "cpu": "256",
     "containerDefinitions": [
