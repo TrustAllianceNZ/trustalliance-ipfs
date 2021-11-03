@@ -30,7 +30,7 @@ phases:
   build:
     commands:
       - echo "Login to ECR"
-      - aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 473182368843.dkr.ecr.ap-southeast-2.amazonaws.com
+      - aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.ap-southeast-2.amazonaws.com
       - echo "Push image to ECR"
       - docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_NAME}:${IMAGE_TAG}
     finally:
