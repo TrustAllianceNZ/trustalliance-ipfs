@@ -1,23 +1,51 @@
 version: 0.2
 
+env:
+  variables:
+    AWS_ACCOUNT_ID: ${AWS_ACCOUNT_ID}
+    AWS_REGION: ${AWS_REGION}
+    IMAGE_NAME: trackback-ipfs
+    AWS_EXE_ROLE_ARN: ${AWS_EXE_ROLE_ARN}
+    AWS_TASK_ROLE_ARN: ${AWS_TASK_ROLE_ARN}
+
 phases:
   install:
-    runtime-versions:
-      nodejs: 14 
+    commands:
+      - echo "Entered the install phase..."
+      - apt-get update -y
+      - apt-get install -y docker.io
+      - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      - unzip awscliv2.zip
+      - ./aws/install --update
+    finally:
+      - echo "installed"
   pre_build:
     commands:
-      - echo Installing source NPM dependencies...
-      - npm install
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - echo "Build docker image"
+      - docker build -t ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_NAME}:${IMAGE_TAG} .
+    finally:
+      - echo "build ready for ECR"
   build:
     commands:
-      - echo Build started on `date`
+      - echo "Login to ECR"
+      - aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.ap-southeast-2.amazonaws.com
+      - echo "Push image to ECR"
+      - docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_NAME}:${IMAGE_TAG}
+    finally:
+      - echo "pushed to ecr"
   post_build:
     commands:
-      - echo Build completed on `date`
-# Include only the files required for your application to run.
-# Do not use recursively include artifacts from node_modules directory as it will include unnecessary packages 
-# used only for building and testing.
-# ExpressJS apps will need other artifact directories included (bin/*, public/*, routes/*, views/* etc).
+      - printf '{"ImageURI":"%s"}' ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_NAME}:${IMAGE_TAG} > imagedefinitions.json
+      - sed -i 's/<APP_NAME>/'${IMAGE_NAME}'/g' appspec.yml taskdef.json
+      - sed -i 's/<SERVICE_PORT>/'80'/g' appspec.yml taskdef.json
+      - sed -i 's/<AWS_ACCOUNT_ID>/'${AWS_ACCOUNT_ID}'/g' taskdef.json
+      - sed -i 's/<MEMORY_RESV>/'256'/g' taskdef.json
+      - sed -i 's/<IMAGE_NAME>/'${AWS_ACCOUNT_ID}'\.dkr\.ecr\.'${AWS_REGION}'\.amazonaws.com\/'${IMAGE_NAME}'\:'${IMAGE_TAG}'/g' taskdef.json
+      - echo "Building is done"
 artifacts:
   files:
-    - '**/*'
+    - imagedefinitions.json
+    - appspec.yml
+    - taskdef.json
