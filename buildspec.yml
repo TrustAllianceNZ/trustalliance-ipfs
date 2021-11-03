@@ -38,16 +38,14 @@ phases:
   post_build:
     commands:
       - printf '{"ImageURI":"%s"}' ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_NAME}:${IMAGE_TAG} > imagedefinitions.json
-      - sed -i 's/<APP_NAME>/'${IMAGE_NAME}'/g' appspec.yml taskdefinition.json
-      - sed -i 's/<SERVICE_PORT>/'80'/g' appspec.yml taskdefinition.json
-      - sed -i 's/<AWS_ACCOUNT_ID>/'${AWS_ACCOUNT_ID}'/g' taskdefinition.json
-      # - sed -i 's/<AWS_TASK_ROLE_ARN>/'${AWS_TASK_ROLE_ARN}'/g' taskdefinition.json
-      # - sed -i 's/<AWS_EXE_ROLE_ARN>/'${AWS_EXE_ROLE_ARN}'/g' taskdefinition.json
-      - sed -i 's/<MEMORY_RESV>/'256'/g' taskdefinition.json
-      - sed -i 's/<IMAGE_NAME>/'${AWS_ACCOUNT_ID}'\.dkr\.ecr\.'${AWS_REGION}'\.amazonaws.com\/'${IMAGE_NAME}'\:'${IMAGE_TAG}'/g' taskdefinition.json
+      - sed -i 's/<APP_NAME>/'${IMAGE_NAME}'/g' appspec.yml taskdef.json
+      - sed -i 's/<SERVICE_PORT>/'80'/g' appspec.yml taskdef.json
+      - sed -i 's/<AWS_ACCOUNT_ID>/'${AWS_ACCOUNT_ID}'/g' taskdef.json
+      - sed -i 's/<MEMORY_RESV>/'256'/g' taskdef.json
+      - sed -i 's/<IMAGE_NAME>/'${AWS_ACCOUNT_ID}'\.dkr\.ecr\.'${AWS_REGION}'\.amazonaws.com\/'${IMAGE_NAME}'\:'${IMAGE_TAG}'/g' taskdef.json
       - echo "Building is done"
 artifacts:
   files:
     - imagedefinitions.json
     - appspec.yml
-    - taskdefinition.json
+    - taskdef.json
