@@ -18,7 +18,7 @@ IPFS connector for  Decentralised Identifiers Storage.
 
 ## API end points (MVP Release)
 * MVP hosted base URL :- `https://ipfs-connector.trackback.dev/`
-* IPFS Bootstrap node path with CID path :- `https://ipfs.trackback.dev:8080/ipfs/Qma3fM3VBKPXt7peEeJCAG25s7QMUwvLvGDwFikonZbPff`
+* IPFS Bootstrap node path with CID :- `https://ipfs.trackback.dev:8080/ipfs/Qma3fM3VBKPXt7peEeJCAG25s7QMUwvLvGDwFikonZbPff`
 * [TrackBack Agent](https://github.com/trackback-blockchain/trackback-verifiable/tree/main/packages/trackback-agent) connects to the service `https://ipfs-connector.trackback.dev/`
 ### Service Status
 Request
@@ -31,7 +31,10 @@ Response
     "ping": "pong"
 }
 ```
-
+### NOTICE!
+* This is a minimum viable product and required significant improvments to use in production.
+* This release only to test data interopability using decentralised identifiers and verifiable credentials.
+* Production ready version will be released Q2 | 2022
 ### IPFS Status
 
 Request
