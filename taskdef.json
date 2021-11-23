@@ -1,0 +1,35 @@
+{
+    "executionRoleArn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/trackback-ipfs-task-execution-role",
+    "taskRoleArn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/trackback-ipfs-task-role",
+    "memory": "512",
+    "cpu": "256",
+    "containerDefinitions": [
+        {
+            "name": "<APP_NAME>",
+            "image": "<IMAGE_NAME>",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "protocol": "tcp",
+                    "containerPort": 80
+                }
+            ],
+            "environment": [
+                {
+                    "name": "PORT",
+                    "value": "80"
+                },
+                {
+                    "name": "APP_NAME",
+                    "value": "<APP_NAME>"
+                }
+            ]
+        }
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "networkMode": "awsvpc",
+    "family": "<APP_NAME>"
+}
