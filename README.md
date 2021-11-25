@@ -1,4 +1,4 @@
-# TrackBack IPFS Service
+# TrackBack IPFS Service (MVP)
 <p>
   <a href="https://trackback.co.nz/">
     <img src="https://user-images.githubusercontent.com/2051324/127407635-236f8a7a-4ca6-410a-9fc4-add396743cfa.png" alt="TrackBack"></a>
@@ -16,7 +16,10 @@ IPFS connector for  Decentralised Identifiers Storage.
     <img src="https://img.shields.io/badge/ipfs--http--client-53.0.0-blue" alt="ipfs-http-client">
 </a>
 
-## API end points 
+## API end points (MVP Release)
+* MVP hosted base URL :- `https://ipfs-connector.trackback.dev/`
+* IPFS Bootstrap node path with CID :- `https://ipfs.trackback.dev:8080/ipfs/Qma3fM3VBKPXt7peEeJCAG25s7QMUwvLvGDwFikonZbPff`
+* [TrackBack Agent](https://github.com/trackback-blockchain/trackback-verifiable/tree/main/packages/trackback-agent) connects to the service `https://ipfs-connector.trackback.dev/`
 ### Service Status
 Request
 ```bash
@@ -28,7 +31,10 @@ Response
     "ping": "pong"
 }
 ```
-
+### NOTICE!
+* This is a minimum viable product and required significant improvments to use in production.
+* This release only to test data interopability using decentralised identifiers and verifiable credentials.
+* Production ready version will be released Q2 | 2022
 ### IPFS Status
 
 Request
@@ -103,6 +109,7 @@ Response
 ```
 
 ### Get content
+* Pass the `CID` or `didRef`
 Request
 ```bash
 curl --location --request GET 'http://127.0.0.1:3000/api/0.1/ipfs/get?CID=QmcNYMJBhvbrH8oTo5QGNUFA5rhKpBVXHBpfiecxso7D8P' \
