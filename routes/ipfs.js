@@ -2,6 +2,8 @@ var express = require('express');
 
 const { create } = require('ipfs-http-client');
 const { body, query } = require('express-validator');
+const { mongoose } = require('mongoose');
+
 const { validate } = require('../util/validate');
 const axios = require('axios');
 const ipfsURL = process.env.IPFS_BASE_URL || 'https://ipfs.trackback.dev';
@@ -11,6 +13,18 @@ const ipfsAPIReadonlyPort = parseInt(process.env.ipfsAPIReadonlyPort || '8080');
 const client = create(new URL(ipfsURL+":" + ipfsAPIPort));
 
 var router = express.Router();
+// *****************************
+//get your local URL here
+mongoose.connect('mongodb://localhost/dev', {useNewUrlParser: true});
+const BookSchema = new Schema({
+  name : String
+  })
+
+// *****************************  
+
+
+
+
 
 /**
  * @param CID | String CID of IPFS resource
@@ -107,6 +121,8 @@ router.post(
           'cid':result.path,
           'didURI': didURI
         });
+        // *****************************************
+        // *****************************************
       } catch (err) {
         res.statusCode = 400;
         res.json({
