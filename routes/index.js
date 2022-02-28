@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 /**
- * Returns the status of TrackBack-IPFS service
+ * Returns the status of TrustAlliance-IPFS service
  * @returns `HTTP status 200` | JSON {ping: 'pong'}
  */
 router.get('/status', async(req, res) => {

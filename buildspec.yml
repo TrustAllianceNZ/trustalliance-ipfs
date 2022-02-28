@@ -4,7 +4,7 @@ env:
   variables:
     AWS_ACCOUNT_ID: ${AWS_ACCOUNT_ID}
     AWS_REGION: ${AWS_REGION}
-    IMAGE_NAME: trackback-ipfs
+    IMAGE_NAME: trustalliance-ipfs
     AWS_EXE_ROLE_ARN: ${AWS_EXE_ROLE_ARN}
     AWS_TASK_ROLE_ARN: ${AWS_TASK_ROLE_ARN}
 
