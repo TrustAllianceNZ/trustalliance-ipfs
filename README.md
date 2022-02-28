@@ -1,25 +1,22 @@
-# TrackBack IPFS Service (MVP)
+# TrustAlliance IPFS Service (MVP)
 <p>
-  <a href="https://trackback.co.nz/">
-    <img src="https://user-images.githubusercontent.com/2051324/127407635-236f8a7a-4ca6-410a-9fc4-add396743cfa.png" alt="TrackBack"></a>
+  <a href="https://trustalliance.co.nz/">
 </p>
 
 IPFS connector for  Decentralised Identifiers Storage.
 <br>
-<a href="https://ipfs.trackback.dev" target="_blank">
-    <img src="https://img.shields.io/badge/trackback--ipfs-0.0.1-orange" alt="TrackBack IPFS interface">
+<a href="https://ipfs.trustalliance.co.nz" target="_blank">
+    <img src="https://img.shields.io/badge/trustalliance--ipfs-0.0.1-orange" alt="TrustAlliance IPFS interface">
 </a>
-<a href="https://ipfs.trackback.dev" target="_blank">
+<a href="https://ipfs.trustalliance.co.nz" target="_blank">
     <img src="https://img.shields.io/badge/nodejs-14.0-green" alt="Node JS version 14 or above">
 </a>
-<a href="https://ipfs.trackback.dev" target="_blank">
+<a href="https://ipfs.trustalliance.co.nz" target="_blank">
     <img src="https://img.shields.io/badge/ipfs--http--client-53.0.0-blue" alt="ipfs-http-client">
 </a>
 
 ## API end points (MVP Release)
-* MVP hosted base URL :- `https://ipfs-connector.trackback.dev/`
-* IPFS Bootstrap node path with CID :- `https://ipfs.trackback.dev:8080/ipfs/Qma3fM3VBKPXt7peEeJCAG25s7QMUwvLvGDwFikonZbPff`
-* [TrackBack Agent](https://github.com/trackback-blockchain/trackback-verifiable/tree/main/packages/trackback-agent) connects to the service `https://ipfs-connector.trackback.dev/`
+* MVP hosted base URL :- `https://ipfs-connector.trustalliance.co.nz/`
 ### Service Status
 Request
 ```bash
@@ -79,18 +76,18 @@ Request
 curl --location --request POST 'http://127.0.0.1:3000/api/0.1/ipfs/add' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "didURI": "did:trackback.dev:0x2a674c8ef2bc79f13faf22d4165ac99efc2cabe6e3194c0a58336fed7c56b1b3",
+    "didURI": "did:trustalliance.dev:0x2a674c8ef2bc79f13faf22d4165ac99efc2cabe6e3194c0a58336fed7c56b1b3",
     "didDocument": {
   "@context": [
     "https://www.w3.org/ns/did/v1",
     "https://w3id.org/security/suites/ed2551s9-2020/v1"
   ],
-  "id": "did:trackback.dev:0x2a674c8ef2bc79f13faf22d4165ac99efc2cabe6e3194c0a58336fed7c56b1b3",
+  "id": "did:trustalliance.dev:0x2a674c8ef2bc79f13faf22d4165ac99efc2cabe6e3194c0a58336fed7c56b1b3",
   "assertionMethod": [
     {
-      "id": "did:trackback.dev:dia-0x12345678999",
+      "id": "did:trustalliance.dev:dia-0x12345678999",
       "type": "Ed25519VerificationKey2020", 
-      "controller": "did:trackback.dev:dia-0x1234567890",
+      "controller": "did:trustalliance.dev:dia-0x1234567890",
       "publicKeyMultibase": "AAAAC3NzaCfbdgdsssssss1lZDI1NTE5AAAAIIFraDC1HgOAg22wwwyaRuFvCTcL+N3yeBH/tN+zUI"
     }
   ]
@@ -104,7 +101,7 @@ Response
 ```json
 {
     "cid": "QmcNYMJBhvbrH8oTo5QGNUFA5rhKpBVXHBpfiecxso7D8P",
-    "didURI": "did:trackback.dev:0x2a674c8ef2bc79f13faf22d4165ac99efc2cabe6e3194c0a58336fed7c56b1b3"
+    "didURI": "did:trustalliance.dev:0x2a674c8ef2bc79f13faf22d4165ac99efc2cabe6e3194c0a58336fed7c56b1b3"
 }
 ```
 
@@ -125,12 +122,12 @@ Response
             "https://www.w3.org/ns/did/v1",
             "https://w3id.org/security/suites/ed2551s9-2020/v1"
         ],
-        "id": "did:trackback.dev:0x2a674c8ef2bc79f13faf22d4165ac99efc2cabe6e3194c0a58336fed7c56b1b3",
+        "id": "did:trustalliance.dev:0x2a674c8ef2bc79f13faf22d4165ac99efc2cabe6e3194c0a58336fed7c56b1b3",
         "assertionMethod": [
             {
-                "id": "did:trackback.dev:dia-0x12345678999",
+                "id": "did:trustalliance.dev:dia-0x12345678999",
                 "type": "Ed25519VerificationKey2020",
-                "controller": "did:trackback.dev:dia-0x1234567890",
+                "controller": "did:trustalliance.dev:dia-0x1234567890",
                 "publicKeyMultibase": "AAAAC3NzaCfbdgdsssssss1lZDI1NTE5AAAAIIFraDC1HgOAg22wwwyaRuFvCTcL+N3yeBH/tN+zUI"
             }
         ]

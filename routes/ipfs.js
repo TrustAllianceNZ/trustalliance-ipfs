@@ -6,7 +6,7 @@ const { mongoose } = require('mongoose');
 
 const { validate } = require('../util/validate');
 const axios = require('axios');
-const ipfsURL = process.env.IPFS_BASE_URL || 'https://ipfs.trackback.dev';
+const ipfsURL = process.env.IPFS_BASE_URL || 'https://ipfs.trustalliance.dev';
 const ipfsAPIPort = parseInt(process.env.IPFS_API_PORT || '5001');
 const ipfsAPIReadonlyPort = parseInt(process.env.ipfsAPIReadonlyPort || '8080');
 
