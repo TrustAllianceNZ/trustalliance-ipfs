@@ -137,6 +137,14 @@ Response
 
 # Local setup
 ## Run Locally
+
+### For local development only! (Uses IPFS in prod)
+* Install and configure MongoDB community edition locally without a username and a password
+* Create a database called dev in mongoDB
+* Create an environment variable called PORT and make it `3000`
+* Use the branch :- `feature/dev_environment`
+execute  the following
+
 ```bash
 nvm use 14
 yarn && yarn start

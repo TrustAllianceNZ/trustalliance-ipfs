@@ -25,35 +25,61 @@ router.get(
       query('CID').isLength(min=10, max=100),
     ]),
 
-
     async(req, res) => {
         let content = {"content": "error"};
         res.statusCode = 400;
         let CID = req.query.CID;
-        console.log(req);
 
+        try{
 
-        /**/  
-        try {
-            axios.get(
-              ipfsURL+":"+ipfsAPIReadonlyPort+"/ipfs/" + CID,
-            ).then(function (response) {
-              content = response.data;
-              res.statusCode = 200;
-              res.json({
-                CID: CID,
-                content: content
-              });
-            }).catch(function (error){
-              content = error;
-            });
+          id = CID
+          didModule.findById(id, function (err, docs) {
+              if (err){
+                  console.log("Error");
+                  res.json({
+                    CID: id,
+                    content: content
+                  });
+              }
+              else{
+                  console.log(docs)
+                  res.statusCode = 200;
+                  res.json({
+                    CID: id,
+                    content: docs
+                  });
+ 
+              }
+          });
         } catch (error) {
-          content = error;
           res.json({
             CID: CID,
-            content: content
+            content: error
           });
         }
+
+        // Use in Production
+
+        // try {
+        //     axios.get(
+        //       ipfsURL+":"+ipfsAPIReadonlyPort+"/ipfs/" + CID,
+        //     ).then(function (response) {
+        //       content = response.data;
+        //       res.statusCode = 200;
+        //       res.json({
+        //         CID: CID,
+        //         content: content
+        //       });
+        //     }).catch(function (error){
+        //       content = error;
+        //     });
+        // } catch (error) {
+        //   content = error;
+        //   res.json({
+        //     CID: CID,
+        //     content: content
+        //   });
+        // }
     }
 );
 
