@@ -15,7 +15,7 @@ db.once("open", function(){
     console.log("Connected");
 });
 
-var DIDSchema = new Schema({
+var DIDSchema = new mongoose.Schema({
     cid : String,
     didDocument: Object,
     didURI: String,

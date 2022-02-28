@@ -11,7 +11,9 @@ var http = require('http');
 /**
  * Get port from environment and store in Express.
  */
-
+console.log("*************************");
+console.log(process.env.PORT)
+console.log("*************************");
 var port = normalizePort(process.env.PORT || '80');
 app.set('port', port);
 
@@ -37,12 +39,14 @@ function normalizePort(val) {
   var port = parseInt(val, 10);
 
   if (isNaN(port)) {
+    console.log(val);
     // named pipe
     return val;
   }
 
   if (port >= 0) {
     // port number
+    console.log(port)
     return port;
   }
 
@@ -55,6 +59,9 @@ function normalizePort(val) {
 
 function onError(error) {
   if (error.syscall !== 'listen') {
+    console.log("******ERROR*******")
+    console.log(error)
+    console.log(("*******************"))
     throw error;
   }
 
