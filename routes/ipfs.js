@@ -4,7 +4,7 @@ const { create } = require('ipfs-http-client');
 const { body, query } = require('express-validator');
 const { validate } = require('../util/validate');
 const axios = require('axios');
-const ipfsURL = process.env.IPFS_BASE_URL || 'https://ipfs.trustalliance.dev';
+const ipfsURL = process.env.IPFS_BASE_URL || 'http://127.0.0.1';
 const ipfsAPIPort = parseInt(process.env.IPFS_API_PORT || '5001');
 const ipfsAPIReadonlyPort = parseInt(process.env.ipfsAPIReadonlyPort || '8080');
 
